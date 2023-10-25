@@ -1,14 +1,17 @@
-from rest_framework import viewsets
+from rest_framework import serializers
 
 from .models import Cat, Owner
-from .serializers import CatSerializer, OwnerSerializer
 
 
-class CatViewSet(viewsets.ModelViewSet):
-    queryset = Cat.objects.all()
-    serializer_class = CatSerializer
+class CatSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Cat
+        fields = ('id', 'name', 'color', 'birth_year')
 
 
-class OwnerViewSet(viewsets.ModelViewSet):
-    queryset = Owner.objects.all()
-    serializer_class = OwnerSerializer
+class OwnerSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Owner
+        fields = ('first_name', 'last_name')
